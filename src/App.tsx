@@ -3,6 +3,7 @@ import Badge from "./components/badge";
 import Icon from "./components/icon";
 import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
+import InputText from "./components/input-text";
 
 import TrashIcon from "./assets/icons/trash.svg?react";
 import CheckIcon from "./assets/icons/check.svg?react";
@@ -13,7 +14,7 @@ import SpinnerIcon from "./assets/icons/spinner.svg?react";
 
 export default function App() {
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-10">
       <div className="flex flex-col gap-2">
         <Text variant="body-sm-bold" className="text-pink-base">
           Olá mundo!
@@ -45,6 +46,10 @@ export default function App() {
         <ButtonIcon icon={TrashIcon} />
         <ButtonIcon icon={TrashIcon} variant="secondary" />
         <ButtonIcon icon={TrashIcon} variant="tertiary" />
+      </div>
+
+      <div>
+        <InputText />
       </div>
     </div>
   )
