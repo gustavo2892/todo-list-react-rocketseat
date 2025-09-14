@@ -23,7 +23,7 @@ export default function TaskItem({ task }: TaskItemProps) {
   );
 
   const [taskTitle, setTaskTitle] = React.useState(task.title || "");
-  const { updateTask, updateTaskStatus } = useTask();
+  const { updateTask, updateTaskStatus, deleteTask } = useTask();
 
   function handleEditTask() {
     setIsEditing(true);
@@ -40,6 +40,10 @@ export default function TaskItem({ task }: TaskItemProps) {
   }
 
   function handleExitEditTask() {
+    if (task.state === TaskState.Creating) {
+      deleteTask(task.id);
+    }
+
     setIsEditing(false);
   }
 
@@ -47,6 +51,10 @@ export default function TaskItem({ task }: TaskItemProps) {
     e.preventDefault();
     updateTask(task.id, { title: taskTitle });
     setIsEditing(false);
+  }
+
+  function handleDeleteTask() {
+    deleteTask(task.id);
   }
 
   return (
@@ -61,7 +69,11 @@ export default function TaskItem({ task }: TaskItemProps) {
             {task?.title}
           </Text>
           <div className="flex gap-1">
-            <ButtonIcon icon={TrashIcon} variant="tertiary" />
+            <ButtonIcon
+              icon={TrashIcon}
+              variant="tertiary"
+              onClick={handleDeleteTask}
+            />
             <ButtonIcon
               icon={PencilIcon}
               variant="tertiary"
